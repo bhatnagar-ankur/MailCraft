@@ -1,0 +1,16 @@
+{
+  "id": "system-alert",
+  "name": "System Alert / Notification",
+  "description": "Security alert, service status notification, or account activity with colour-coded severity",
+  "useCase": "Security alert, service status, account activity notification",
+  "variables": {
+    "firstName":    { "type": "string", "required": true,  "description": "Recipient's first name" },
+    "alertType":    { "type": "string", "required": true,  "description": "Severity: 'info', 'warning', or 'critical'", "enum": ["info", "warning", "critical"] },
+    "alertTitle":   { "type": "string", "required": true,  "description": "Short alert heading" },
+    "alertMessage": { "type": "string", "required": true,  "description": "Full alert description" },
+    "timestamp":    { "type": "string", "required": true,  "description": "Alert timestamp" },
+    "actionText":   { "type": "string", "required": false, "description": "CTA button label, e.g. 'Review Activity'" },
+    "actionLink":   { "type": "url",    "required": false, "description": "CTA button URL" },
+    "supportLink":  { "type": "url",    "required": false, "description": "Support page URL" }
+  }
+}

@@ -1,0 +1,89 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" />
+      <mj-text font-size="16px" line-height="1.6" color="#374151" padding="0 0 12px 0" />
+      <mj-button font-size="16px" font-weight="600" border-radius="6px" inner-padding="14px 28px" />
+    </mj-attributes>
+    <mj-preview>You're invited: {{eventName}} on {{eventDate}}</mj-preview>
+  </mj-head>
+  <mj-body background-color="#f3f4f6">
+
+    <mj-section padding="24px 0 0 0">
+      <mj-column><mj-spacer height="4px" /></mj-column>
+    </mj-section>
+
+    <!-- Hero header — solid colour (no background image, works in all Outlook versions) -->
+    <mj-section background-color="#4f46e5" padding="40px 40px" border-radius="8px 8px 0 0">
+      <mj-column>
+        <mj-text align="center" font-size="12px" font-weight="700" color="#c7d2fe" padding="0 0 8px 0">
+          YOU'RE INVITED
+        </mj-text>
+        <mj-text align="center" font-size="28px" font-weight="700" color="#ffffff" padding="0">
+          {{eventName}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Greeting -->
+    <mj-section background-color="#ffffff" padding="32px 40px 0">
+      <mj-column>
+        <mj-text font-size="17px" color="#111827" padding="0 0 8px 0">Hi {{firstName}},</mj-text>
+        <mj-text padding="0">
+          We'd love for you to join us at <strong>{{eventName}}</strong>.
+          {{#if description}}{{description}}{{/if}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Event detail cards -->
+    <mj-section background-color="#ffffff" padding="16px 40px">
+      <mj-column border="1px solid #e5e7eb" border-radius="6px" padding="16px">
+        <mj-text font-size="11px" font-weight="700" color="#6b7280" padding="0 0 4px 0">DATE</mj-text>
+        <mj-text font-size="16px" font-weight="600" color="#111827" padding="0">{{eventDate}}</mj-text>
+      </mj-column>
+      <mj-column border="1px solid #e5e7eb" border-radius="6px" padding="16px">
+        <mj-text font-size="11px" font-weight="700" color="#6b7280" padding="0 0 4px 0">TIME</mj-text>
+        <mj-text font-size="16px" font-weight="600" color="#111827" padding="0">{{eventTime}} {{timezone}}</mj-text>
+      </mj-column>
+      <mj-column border="1px solid #e5e7eb" border-radius="6px" padding="16px">
+        <mj-text font-size="11px" font-weight="700" color="#6b7280" padding="0 0 4px 0">LOCATION</mj-text>
+        <mj-text font-size="16px" font-weight="600" color="#111827" padding="0">{{location}}</mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- RSVP CTA -->
+    <mj-section background-color="#ffffff" padding="0 40px 16px">
+      <mj-column>
+        <mj-button background-color="#4f46e5" color="#ffffff" href="{{rsvpLink}}" align="center">
+          RSVP Now
+        </mj-button>
+      </mj-column>
+    </mj-section>
+
+    <!-- Add to calendar -->
+    {{#if calendarLink}}
+    <mj-section background-color="#ffffff" padding="0 40px 32px">
+      <mj-column>
+        <mj-text align="center" font-size="14px" color="#6b7280" padding="0">
+          <a href="{{calendarLink}}" style="color:#4f46e5;text-decoration:none;">+ Add to Calendar</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    {{/if}}
+
+    <!-- Footer -->
+    <mj-section background-color="#f9fafb" border-radius="0 0 8px 8px" padding="20px 40px">
+      <mj-column>
+        <mj-text font-size="13px" color="#9ca3af" align="center" padding="0">
+          We hope to see you there!
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="0 0 24px 0">
+      <mj-column><mj-spacer height="4px" /></mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

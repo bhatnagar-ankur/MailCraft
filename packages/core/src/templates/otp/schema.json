@@ -1,0 +1,13 @@
+{
+  "id": "otp",
+  "name": "OTP / Security Code",
+  "description": "Two-factor authentication or login verification code email",
+  "useCase": "2FA, login verification, phone/email confirmation",
+  "variables": {
+    "firstName":      { "type": "string", "required": true,  "description": "Recipient's first name" },
+    "otpCode":        { "type": "string", "required": true,  "description": "The one-time passcode, e.g. '847291'" },
+    "expiryMinutes":  { "type": "number", "required": true,  "description": "Minutes until the code expires" },
+    "requestedAt":    { "type": "string", "required": true,  "description": "Timestamp the code was requested, e.g. 'Sept 9, 2026, 10:34 AM UTC'" },
+    "supportLink":    { "type": "url",    "required": false, "description": "Support page URL shown if recipient did not request the code" }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "firstName": "Ankur",
+  "alertType": "warning",
+  "alertTitle": "New sign-in from an unrecognised device",
+  "alertMessage": "We detected a sign-in to your account from a new device: Chrome on Windows, IP 198.51.100.22. If this was you, no action is needed. If you don't recognise this activity, please secure your account immediately.",
+  "timestamp": "September 9, 2026 at 10:34 AM UTC",
+  "actionText": "Review Account Activity",
+  "actionLink": "https://app.example.com/security/activity",
+  "supportLink": "https://support.example.com"
+}

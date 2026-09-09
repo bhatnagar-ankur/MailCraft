@@ -1,0 +1,28 @@
+{
+  "id": "invoice",
+  "name": "Invoice / Payment Receipt",
+  "description": "E-commerce transaction or SaaS billing invoice with line items",
+  "useCase": "E-commerce, SaaS billing, payment receipt",
+  "variables": {
+    "customerName":  { "type": "string", "required": true,  "description": "Customer's full name or company" },
+    "invoiceNumber": { "type": "string", "required": true,  "description": "Invoice number, e.g. 'INV-2026-001'" },
+    "invoiceDate":   { "type": "string", "required": true,  "description": "Invoice issue date" },
+    "dueDate":       { "type": "string", "required": false, "description": "Payment due date" },
+    "currency":      { "type": "string", "required": true,  "description": "Currency code or symbol, e.g. 'USD' or '$'" },
+    "items": {
+      "type": "array",
+      "required": true,
+      "description": "Array of line items",
+      "itemSchema": {
+        "description": { "type": "string", "required": true,  "description": "Item description" },
+        "quantity":    { "type": "string", "required": true,  "description": "Quantity" },
+        "unitPrice":   { "type": "string", "required": true,  "description": "Unit price formatted string" },
+        "total":       { "type": "string", "required": true,  "description": "Line total formatted string" }
+      }
+    },
+    "subtotal":      { "type": "string", "required": true,  "description": "Subtotal before tax, formatted" },
+    "tax":           { "type": "string", "required": false, "description": "Tax amount, formatted" },
+    "total":         { "type": "string", "required": true,  "description": "Grand total, formatted" },
+    "downloadLink":  { "type": "url",    "required": false, "description": "URL to download the PDF invoice" }
+  }
+}

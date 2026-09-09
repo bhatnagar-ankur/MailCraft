@@ -1,0 +1,27 @@
+{
+  "id": "order-confirmation",
+  "name": "Order Confirmation",
+  "description": "E-commerce post-purchase order confirmation with product list and delivery info",
+  "useCase": "E-commerce order confirmation",
+  "variables": {
+    "customerName":      { "type": "string", "required": true,  "description": "Customer's name" },
+    "orderNumber":       { "type": "string", "required": true,  "description": "Order reference number" },
+    "estimatedDelivery": { "type": "string", "required": true,  "description": "Estimated delivery date range" },
+    "items": {
+      "type": "array",
+      "required": true,
+      "description": "Array of ordered products",
+      "itemSchema": {
+        "name":     { "type": "string", "required": true,  "description": "Product name" },
+        "imageUrl": { "type": "url",    "required": false, "description": "Product image URL" },
+        "quantity": { "type": "string", "required": true,  "description": "Quantity ordered" },
+        "price":    { "type": "string", "required": true,  "description": "Item price formatted string" }
+      }
+    },
+    "subtotal":        { "type": "string", "required": true,  "description": "Order subtotal" },
+    "shipping":        { "type": "string", "required": true,  "description": "Shipping cost" },
+    "total":           { "type": "string", "required": true,  "description": "Order total" },
+    "deliveryAddress": { "type": "string", "required": true,  "description": "Delivery address (may include line breaks)" },
+    "trackingLink":    { "type": "url",    "required": false, "description": "Order tracking URL" }
+  }
+}

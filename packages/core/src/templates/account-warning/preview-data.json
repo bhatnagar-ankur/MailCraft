@@ -1,0 +1,8 @@
+{
+  "firstName": "Ankur",
+  "reason": "Your account has been flagged for unusual activity that may violate our Terms of Service.",
+  "actionRequired": "Please review our Terms of Service and confirm that your account usage complies with our policies. If you believe this is a mistake, please contact our support team.",
+  "deadline": "September 16, 2026",
+  "supportLink": "https://support.example.com/contact",
+  "appealLink": "https://support.example.com/appeal"
+}

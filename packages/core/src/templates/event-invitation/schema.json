@@ -1,0 +1,17 @@
+{
+  "id": "event-invitation",
+  "name": "Event Invitation",
+  "description": "Webinar, team event, or conference invitation with RSVP CTA",
+  "useCase": "Webinar invitation, team event, conference",
+  "variables": {
+    "firstName":    { "type": "string", "required": true,  "description": "Recipient's first name" },
+    "eventName":    { "type": "string", "required": true,  "description": "Name of the event" },
+    "eventDate":    { "type": "string", "required": true,  "description": "Event date, e.g. 'October 15, 2026'" },
+    "eventTime":    { "type": "string", "required": true,  "description": "Event start time, e.g. '2:00 PM'" },
+    "timezone":     { "type": "string", "required": true,  "description": "Timezone, e.g. 'IST' or 'UTC+5:30'" },
+    "location":     { "type": "string", "required": true,  "description": "Venue or 'Online via Zoom'" },
+    "description":  { "type": "string", "required": false, "description": "Short event description" },
+    "rsvpLink":     { "type": "url",    "required": true,  "description": "RSVP confirmation URL" },
+    "calendarLink": { "type": "url",    "required": false, "description": "Add-to-calendar URL (e.g. Google Calendar)" }
+  }
+}

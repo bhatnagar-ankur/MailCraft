@@ -1,0 +1,16 @@
+{
+  "customerName": "Ankur Bhatnagar",
+  "invoiceNumber": "INV-2026-042",
+  "invoiceDate": "September 9, 2026",
+  "dueDate": "September 23, 2026",
+  "currency": "$",
+  "items": [
+    { "description": "Pro Plan (monthly)", "quantity": "1", "unitPrice": "$99.00", "total": "$99.00" },
+    { "description": "Additional seats (×3)", "quantity": "3", "unitPrice": "$15.00", "total": "$45.00" },
+    { "description": "Priority support add-on", "quantity": "1", "unitPrice": "$29.00", "total": "$29.00" }
+  ],
+  "subtotal": "173.00",
+  "tax": "17.30",
+  "total": "190.30",
+  "downloadLink": "https://billing.example.com/invoice/INV-2026-042.pdf"
+}

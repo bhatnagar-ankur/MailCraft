@@ -1,0 +1,11 @@
+{
+  "firstName": "Ankur",
+  "eventName": "MailCraft Developer Day 2026",
+  "eventDate": "October 15, 2026",
+  "eventTime": "2:00 PM",
+  "timezone": "IST",
+  "location": "Online via Zoom",
+  "description": "Join us for a full day of talks, workshops, and live demos on building production-ready email workflows with MailCraft.",
+  "rsvpLink": "https://events.example.com/mailcraft-dev-day/rsvp",
+  "calendarLink": "https://calendar.google.com/calendar/r/eventedit?text=MailCraft+Developer+Day"
+}

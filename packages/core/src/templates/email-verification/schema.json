@@ -1,0 +1,12 @@
+{
+  "id": "email-verification",
+  "name": "Email Verification / Account Activation",
+  "description": "New account signup email address confirmation",
+  "useCase": "Account activation, email confirmation",
+  "variables": {
+    "firstName":          { "type": "string", "required": true, "description": "Recipient's first name" },
+    "verificationLink":   { "type": "url",    "required": true, "description": "Unique email verification URL" },
+    "expiryHours":        { "type": "number", "required": true, "description": "Hours until the link expires" },
+    "productName":        { "type": "string", "required": true, "description": "Product or app name" }
+  }
+}

@@ -1,0 +1,71 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" />
+      <mj-text font-size="16px" line-height="1.6" color="#374151" padding="0 0 16px 0" />
+      <mj-button font-size="16px" font-weight="600" border-radius="6px" inner-padding="14px 28px" />
+    </mj-attributes>
+    <mj-preview>Reset your password — link expires in {{expiryHours}} hours</mj-preview>
+  </mj-head>
+  <mj-body background-color="#f3f4f6">
+
+    <mj-section padding="24px 0 0 0">
+      <mj-column><mj-spacer height="4px" /></mj-column>
+    </mj-section>
+
+    <!-- Header -->
+    <mj-section background-color="#dc2626" padding="24px 40px" border-radius="8px 8px 0 0">
+      <mj-column>
+        <mj-text align="center" font-size="20px" font-weight="700" color="#ffffff" padding="0">
+          Password Reset Request
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Body -->
+    <mj-section background-color="#ffffff" padding="32px 40px 16px">
+      <mj-column>
+        <mj-text font-size="18px" color="#111827" padding="0 0 12px 0">Hi {{firstName}},</mj-text>
+        <mj-text padding="0">
+          We received a request to reset the password for your account. Click the button below
+          to choose a new password. This link expires in <strong>{{expiryHours}} hours</strong>.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- CTA -->
+    <mj-section background-color="#ffffff" padding="8px 40px 24px">
+      <mj-column>
+        <mj-button background-color="#dc2626" color="#ffffff" href="{{resetLink}}" align="center">
+          Reset My Password
+        </mj-button>
+      </mj-column>
+    </mj-section>
+
+    <!-- Security notice -->
+    <mj-section background-color="#fef2f2" padding="0 40px 32px">
+      <mj-column border="1px solid #fecaca" border-radius="6px" padding="16px">
+        <mj-text font-size="13px" color="#7f1d1d" padding="0">
+          <strong>Didn't request this?</strong> If you didn't ask to reset your password, ignore
+          this email — your password will not change. If you're concerned about your account
+          security, {{#if ipAddress}}this request came from IP <strong>{{ipAddress}}</strong>
+          {{#if deviceInfo}}using <strong>{{deviceInfo}}</strong>{{/if}}.{{/if}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#f9fafb" border-radius="0 0 8px 8px" padding="20px 40px">
+      <mj-column>
+        <mj-text font-size="13px" color="#9ca3af" align="center" padding="0">
+          This link will expire in {{expiryHours}} hours. Do not share it with anyone.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="0 0 24px 0">
+      <mj-column><mj-spacer height="4px" /></mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

@@ -1,0 +1,14 @@
+{
+  "customerName": "Ankur Bhatnagar",
+  "orderNumber": "ORD-88471",
+  "estimatedDelivery": "September 12–14, 2026",
+  "items": [
+    { "name": "Mechanical Keyboard — TKL", "imageUrl": "https://placehold.co/64x64/e5e7eb/374151?text=KB", "quantity": "1", "price": "$129.00" },
+    { "name": "USB-C Hub (7-in-1)", "imageUrl": "https://placehold.co/64x64/e5e7eb/374151?text=HUB", "quantity": "2", "price": "$49.00" }
+  ],
+  "subtotal": "$227.00",
+  "shipping": "$8.00",
+  "total": "$235.00",
+  "deliveryAddress": "123 Developer Lane, Apt 4B\nBangalore, KA 560001\nIndia",
+  "trackingLink": "https://courier.example.com/track/ORD-88471"
+}

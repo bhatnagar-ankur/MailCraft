@@ -1,0 +1,16 @@
+{
+  "firstName": "Ankur",
+  "planName": "Pro",
+  "startDate": "September 9, 2026",
+  "nextBillingDate": "October 9, 2026",
+  "amount": "99.00",
+  "currency": "$",
+  "featuresIncluded": [
+    "Unlimited email renders per month",
+    "All 10 built-in templates",
+    "REST API access",
+    "SendGrid & AWS SES adapters",
+    "Priority email support"
+  ],
+  "manageLink": "https://app.example.com/billing"
+}

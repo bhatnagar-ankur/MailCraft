@@ -1,0 +1,34 @@
+{
+  "name": "@mailcraft/core",
+  "version": "0.1.0",
+  "description": "Core rendering engine for MailCraft — MJML compiler, Handlebars renderer, and CSS inliner",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mailcraft": "dist/cli.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc && node scripts/copy-assets.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@mailcraft/types": "workspace:*",
+    "commander": "^12.1.0",
+    "handlebars": "^4.7.8",
+    "juice": "^11.0.0",
+    "mjml": "^4.15.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/mjml": "^4.7.4",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

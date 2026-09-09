@@ -1,0 +1,15 @@
+{
+  "id": "welcome",
+  "name": "HR Welcome / Onboarding Email",
+  "description": "New employee first-day welcome or client onboarding email",
+  "useCase": "HR onboarding, client welcome",
+  "variables": {
+    "firstName":   { "type": "string", "required": true,  "description": "Recipient's first name" },
+    "companyName": { "type": "string", "required": true,  "description": "Company or organisation name" },
+    "role":        { "type": "string", "required": true,  "description": "Job title or role" },
+    "startDate":   { "type": "string", "required": true,  "description": "First day date, e.g. 'September 15, 2026'" },
+    "managerName": { "type": "string", "required": false, "description": "Manager's full name" },
+    "portalLink":  { "type": "url",    "required": false, "description": "Link to employee/client portal" },
+    "logoUrl":     { "type": "url",    "required": false, "description": "Company logo image URL" }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "account-warning",
+  "name": "Account Warning / Suspension Notice",
+  "description": "Policy violation warning or account-at-risk notice with required action box",
+  "useCase": "Policy violation, account at risk, suspension notice",
+  "variables": {
+    "firstName":      { "type": "string", "required": true,  "description": "Recipient's first name" },
+    "reason":         { "type": "string", "required": true,  "description": "Reason for the warning" },
+    "actionRequired": { "type": "string", "required": true,  "description": "Specific action the user must take" },
+    "deadline":       { "type": "string", "required": false, "description": "Deadline date/time for the required action" },
+    "supportLink":    { "type": "url",    "required": true,  "description": "Support contact URL" },
+    "appealLink":     { "type": "url",    "required": false, "description": "Appeal submission URL" }
+  }
+}

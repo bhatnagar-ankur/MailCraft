@@ -1,0 +1,7 @@
+{
+  "firstName": "Ankur",
+  "resetLink": "https://example.com/reset?token=abc123",
+  "expiryHours": 24,
+  "ipAddress": "203.0.113.42",
+  "deviceInfo": "Chrome on macOS"
+}

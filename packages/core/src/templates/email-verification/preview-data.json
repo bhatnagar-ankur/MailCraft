@@ -1,0 +1,6 @@
+{
+  "firstName": "Ankur",
+  "verificationLink": "https://app.example.com/verify?token=xyz789",
+  "expiryHours": 48,
+  "productName": "MailCraft"
+}

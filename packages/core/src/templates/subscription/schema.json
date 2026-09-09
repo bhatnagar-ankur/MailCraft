@@ -1,0 +1,16 @@
+{
+  "id": "subscription",
+  "name": "Subscription / Plan Confirmation",
+  "description": "SaaS plan activation or newsletter subscription confirmation with features list",
+  "useCase": "SaaS plan activation, newsletter subscription",
+  "variables": {
+    "firstName":         { "type": "string", "required": true,  "description": "Recipient's first name" },
+    "planName":          { "type": "string", "required": true,  "description": "Subscription plan name, e.g. 'Pro'" },
+    "startDate":         { "type": "string", "required": true,  "description": "Subscription start date" },
+    "nextBillingDate":   { "type": "string", "required": false, "description": "Next billing date" },
+    "amount":            { "type": "string", "required": false, "description": "Charged amount, formatted" },
+    "currency":          { "type": "string", "required": false, "description": "Currency code or symbol" },
+    "featuresIncluded":  { "type": "array",  "required": false, "description": "Array of feature description strings" },
+    "manageLink":        { "type": "url",    "required": true,  "description": "URL to manage subscription settings" }
+  }
+}

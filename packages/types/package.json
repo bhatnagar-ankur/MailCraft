@@ -1,0 +1,19 @@
+{
+  "name": "@mailcraft/types",
+  "version": "0.1.0",
+  "description": "Shared TypeScript type contracts for MailCraft",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "password-reset",
+  "name": "Password Reset",
+  "description": "Forgot password flow with secure reset link and security context",
+  "useCase": "Forgot password, account recovery",
+  "variables": {
+    "firstName":   { "type": "string", "required": true,  "description": "Recipient's first name" },
+    "resetLink":   { "type": "url",    "required": true,  "description": "Secure password reset URL" },
+    "expiryHours": { "type": "number", "required": true,  "description": "Hours until the reset link expires" },
+    "ipAddress":   { "type": "string", "required": false, "description": "IP address the request originated from" },
+    "deviceInfo":  { "type": "string", "required": false, "description": "Device/browser info, e.g. 'Chrome on macOS'" }
+  }
+}

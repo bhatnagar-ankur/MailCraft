@@ -1,0 +1,79 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" />
+      <mj-text font-size="16px" line-height="1.6" color="#374151" padding="0 0 16px 0" />
+    </mj-attributes>
+    <mj-preview>Your verification code: {{otpCode}}</mj-preview>
+  </mj-head>
+  <mj-body background-color="#f3f4f6">
+
+    <mj-section padding="24px 0 0 0">
+      <mj-column><mj-spacer height="4px" /></mj-column>
+    </mj-section>
+
+    <!-- Header -->
+    <mj-section background-color="#111827" padding="24px 40px" border-radius="8px 8px 0 0">
+      <mj-column>
+        <mj-text align="center" font-size="20px" font-weight="700" color="#ffffff" padding="0">
+          Security Verification
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Body -->
+    <mj-section background-color="#ffffff" padding="32px 40px 0">
+      <mj-column>
+        <mj-text font-size="18px" color="#111827" padding="0 0 12px 0">Hi {{firstName}},</mj-text>
+        <mj-text padding="0">
+          Use the verification code below to complete your sign-in. This code expires in
+          <strong>{{expiryMinutes}} minutes</strong>.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- OTP Code block -->
+    <mj-section background-color="#ffffff" padding="24px 40px">
+      <mj-column background-color="#f8fafc" border="2px solid #e5e7eb" border-radius="8px" padding="24px">
+        <mj-text
+          align="center"
+          font-family="'Roboto Mono', 'Courier New', Courier, monospace"
+          font-size="40px"
+          font-weight="700"
+          letter-spacing="12px"
+          color="#111827"
+          padding="0">
+          {{otpCode}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Expiry & security notice -->
+    <mj-section background-color="#ffffff" padding="0 40px 24px">
+      <mj-column>
+        <mj-text font-size="13px" color="#6b7280" padding="0 0 8px 0">
+          Requested: {{requestedAt}}
+        </mj-text>
+        <mj-text font-size="13px" color="#6b7280" padding="0">
+          If you didn't request this code, you can safely ignore this email.
+          Your account remains secure.
+          {{#if supportLink}}<a href="{{supportLink}}" style="color:#1e40af;">Contact support</a> if you have concerns.{{/if}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#f9fafb" border-radius="0 0 8px 8px" padding="20px 40px">
+      <mj-column>
+        <mj-text font-size="13px" color="#9ca3af" align="center" padding="0">
+          This is an automated security email. Do not reply.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="0 0 24px 0">
+      <mj-column><mj-spacer height="4px" /></mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>
