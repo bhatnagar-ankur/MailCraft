@@ -166,6 +166,17 @@ interface RenderOptions {
 
 ---
 
+## Documentation
+
+| Doc | Description |
+|-----|-------------|
+| [docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md) | Installation, first render, CLI usage, rendered sample links |
+| [docs/USAGE.md](./docs/USAGE.md) | Full API reference, integration examples, advanced template usage |
+| [docs/samples/](./docs/samples/) | Pre-rendered HTML files for all 10 templates — open in a browser to preview |
+| [Live template gallery](https://claude.ai/code/artifact/ab594c49-216f-443b-a1a6-cb9fef4b7078) | Visual docs with pipeline diagram, gallery mockups, and CLI reference |
+
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
