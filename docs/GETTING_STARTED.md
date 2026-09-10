@@ -165,15 +165,17 @@ No schema validation is applied to `renderRaw` — all variable injection errors
 
 ## Email client compatibility
 
-| Client | HTML | Dark mode |
-|--------|------|-----------|
-| Gmail (web) | ✅ | ✅ |
-| Apple Mail (macOS / iOS) | ✅ | ✅ |
-| Outlook 2016 / 2019 (Windows) | ✅ | — |
-| Outlook 365 (web) | ✅ | ✅ |
-| Yahoo Mail | ✅ | — |
-| Samsung Email | ✅ | — |
-| Thunderbird | ✅ | ✅ |
+| Client | HTML | Dark mode | Notes |
+|--------|------|-----------|-------|
+| Gmail (web) | ✅ | ✅ | |
+| Apple Mail (macOS / iOS) | ✅ | ✅ | |
+| Outlook 2016 / 2019 (Windows) | ✅ | ⚠️ | Auto-invert only; no `prefers-color-scheme` |
+| Classic Outlook desktop (Microsoft 365) | ✅ | ⚠️ | Word rendering engine — same limits as 2016/2019 |
+| New Outlook desktop (Microsoft 365, 2024+) | ✅ | ✅ | Edge/WebView2 renderer; modern CSS support |
+| Outlook on the web / OWA (office365.com) | ✅ | ✅ | Modern browser renderer |
+| Yahoo Mail | ✅ | — | |
+| Samsung Email | ✅ | — | |
+| Thunderbird | ✅ | ✅ | |
 
 ---
 

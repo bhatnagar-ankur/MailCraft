@@ -153,16 +153,19 @@ interface RenderOptions {
 
 ## Email client compatibility
 
-| Feature | Gmail | Apple Mail | Outlook 2016/2019 |
-|---|:---:|:---:|:---:|
-| MJML table layouts | ✅ | ✅ | ✅ |
-| Inline styles | ✅ | ✅ | ✅ |
-| VML buttons (rounded) | ✅ | ✅ | ✅ |
-| `bgcolor` backgrounds | ✅ | ✅ | ✅ |
-| Web fonts | ✅ | ✅ | ⚠️ Falls back to system font |
-| Background images | ✅ | ✅ | ⚠️ VML (handled by MJML) |
-| SVG images | ✅ | ✅ | ❌ Use PNG/JPG |
-| CSS animations | ✅ | ✅ | ❌ Not supported |
+| Feature | Gmail | Apple Mail | Outlook 2016/2019 / Classic M365 | Outlook on the web (OWA) | New Outlook desktop (M365 2024+) |
+|---|:---:|:---:|:---:|:---:|:---:|
+| MJML table layouts | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Inline styles | ✅ | ✅ | ✅ | ✅ | ✅ |
+| VML buttons (rounded) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `bgcolor` backgrounds | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Web fonts | ✅ | ✅ | ⚠️ Falls back to system font | ✅ | ✅ |
+| Background images | ✅ | ✅ | ⚠️ VML (handled by MJML) | ✅ | ✅ |
+| Dark mode | ✅ | ✅ | ⚠️ Auto-invert only | ✅ | ✅ |
+| SVG images | ✅ | ✅ | ❌ Use PNG/JPG | ✅ | ✅ |
+| CSS animations | ✅ | ✅ | ❌ Not supported | ✅ | ✅ |
+
+> **Classic Outlook (Office 365 / Microsoft 365 desktop pre-2024)** uses the Word rendering engine and shares the same limitations as Outlook 2016/2019. **New Outlook desktop** (the 2024+ default) switched to Edge/WebView2 and renders comparably to a modern browser.
 
 ---
 
