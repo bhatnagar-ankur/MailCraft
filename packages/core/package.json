@@ -1,7 +1,15 @@
 {
   "name": "@bhatnagar-ankur/mailcraft-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Core rendering engine for MailCraft — MJML compiler, Handlebars renderer, and CSS inliner",
+  "keywords": ["email", "mjml", "handlebars", "template", "transactional", "html-email", "outlook", "mailcraft"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bhatnagar-ankur/MailCraft.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/bhatnagar-ankur/MailCraft#readme",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
