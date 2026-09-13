@@ -1,5 +1,5 @@
 {
-  "name": "@mailcraft/types",
+  "name": "mailcraft-types",
   "version": "0.1.0",
   "description": "Shared TypeScript type contracts for MailCraft",
   "main": "dist/index.js",

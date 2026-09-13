@@ -9,7 +9,7 @@ Renders a built-in template by ID.
 **Pipeline:** Zod validation → MJML compile → Handlebars render → juice CSS inline
 
 ```typescript
-import { MailCraft } from '@mailcraft/core';
+import { MailCraft } from 'mailcraft';
 
 const mc = new MailCraft();
 const { html, text } = await mc.render('welcome', {
@@ -94,7 +94,7 @@ import {
   getTemplate,       // getTemplate(id: string): TemplateEntry
   listTemplates,     // listTemplates(): TemplateEntry[]
   validateTemplateData, // validateTemplateData(schema, data): ValidationResult
-} from '@mailcraft/core';
+} from 'mailcraft';
 ```
 
 ---
@@ -167,7 +167,7 @@ await mc.render('system-alert', {
 
 ```typescript
 import express from 'express';
-import { MailCraft } from '@mailcraft/core';
+import { MailCraft } from 'mailcraft';
 import nodemailer from 'nodemailer';
 
 const app = express();
@@ -199,7 +199,7 @@ app.post('/send-otp', express.json(), async (req, res) => {
 ```typescript
 // pages/api/send-welcome.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { MailCraft } from '@mailcraft/core';
+import { MailCraft } from 'mailcraft';
 
 const mc = new MailCraft();
 

@@ -3,7 +3,7 @@
 > Open-source dynamic email template builder with cross-client compatibility
 
 [![CI](https://github.com/mailcraft/mailcraft/actions/workflows/ci.yml/badge.svg)](https://github.com/mailcraft/mailcraft/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@mailcraft/core)](https://www.npmjs.com/package/@mailcraft/core)
+[![npm](https://img.shields.io/npm/v/mailcraft)](https://www.npmjs.com/package/mailcraft)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 MailCraft solves the hardest problem in frontend development: making dynamic emails look identical across every email client — from modern Gmail to Outlook 2016 on a corporate Windows machine.
@@ -26,11 +26,11 @@ It wraps **MJML** (for bulletproof table-based HTML) with **Handlebars** (for sa
 ## Quick start
 
 ```bash
-npm install @mailcraft/core
+npm install mailcraft
 ```
 
 ```typescript
-import { MailCraft } from '@mailcraft/core';
+import { MailCraft } from 'mailcraft';
 
 const mc = new MailCraft();
 
