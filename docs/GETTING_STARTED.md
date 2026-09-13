@@ -17,11 +17,11 @@ MailCraft is an open-source email template library that produces cross-client co
 ### As a package dependency
 
 ```bash
-npm install mailcraft
+npm install @bhatnagar-ankur/mailcraft-core
 # or
-yarn add mailcraft
+yarn add @bhatnagar-ankur/mailcraft-core
 # or
-pnpm add mailcraft
+pnpm add @bhatnagar-ankur/mailcraft-core
 ```
 
 ### Clone for local development
@@ -39,7 +39,7 @@ pnpm test             # run the full test suite (24 tests)
 ## Rendering your first email
 
 ```typescript
-import { MailCraft } from 'mailcraft';
+import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
 
 const mc = new MailCraft();
 

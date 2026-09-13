@@ -15,6 +15,6 @@ labels: bug
 **Actual behaviour:**
 
 **Environment:**
-- `mailcraft` version:
+- `@bhatnagar-ankur/mailcraft-core` version:
 - Node version:
 - Email client (if rendering issue):

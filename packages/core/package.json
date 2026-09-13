@@ -1,5 +1,5 @@
 {
-  "name": "mailcraft",
+  "name": "@bhatnagar-ankur/mailcraft-core",
   "version": "0.1.0",
   "description": "Core rendering engine for MailCraft — MJML compiler, Handlebars renderer, and CSS inliner",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "mailcraft-types": "workspace:*",
+    "@bhatnagar-ankur/mailcraft-types": "workspace:*",
     "commander": "^12.1.0",
     "handlebars": "^4.7.8",
     "juice": "^11.0.0",

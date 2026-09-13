@@ -21,8 +21,8 @@ pnpm test
 
 ```
 packages/
-  core/        — mailcraft (compiler, renderer, templates, CLI)
-  types/       — mailcraft-types (shared TypeScript contracts)
+  core/        — @bhatnagar-ankur/mailcraft-core (compiler, renderer, templates, CLI)
+  types/       — @bhatnagar-ankur/mailcraft-types (shared TypeScript contracts)
 ```
 
 ## Making changes

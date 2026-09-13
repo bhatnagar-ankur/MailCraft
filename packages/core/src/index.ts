@@ -3,7 +3,7 @@ import { renderHandlebars, htmlToPlainText, type TemplateData } from './renderer
 import { inlineCss } from './inliner/index';
 import { getTemplate, listTemplates, type TemplateEntry, type TemplateId } from './templates/index';
 import { validateTemplateData, type ValidationResult } from './validator/index';
-import type { RenderOptions, RenderResult } from 'mailcraft-types';
+import type { RenderOptions, RenderResult } from '@bhatnagar-ankur/mailcraft-types';
 
 export type { TemplateData, TemplateEntry, TemplateId, RenderOptions, RenderResult, ValidationResult };
 export { listTemplates, getTemplate, validateTemplateData };
