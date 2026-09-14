@@ -1,6 +1,6 @@
 {
   "name": "@bhatnagar-ankur/mailcraft-types",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shared TypeScript type contracts for MailCraft",
   "keywords": ["email", "typescript", "types", "mailcraft"],
   "license": "MIT",

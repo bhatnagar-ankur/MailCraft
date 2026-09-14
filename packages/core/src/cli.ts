@@ -3,7 +3,7 @@ import { Command } from 'commander';
 import fs from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
-import { MailCraft } from './index';
+import { MailCraft } from './mailcraft';
 
 const program = new Command();
 
@@ -96,6 +96,20 @@ program
       console.error(`Error: ${(err as Error).message}`);
       process.exit(1);
     }
+  });
+
+program
+  .command('serve')
+  .description('Start an HTTP server exposing MailCraft as a REST API')
+  .option('-p, --port <number>', 'Port to listen on (default: 3001)', '3001')
+  .action((opts) => {
+    const port = parseInt(opts.port, 10);
+    if (isNaN(port) || port < 1 || port > 65535) {
+      console.error('Error: --port must be a valid port number (1–65535)');
+      process.exit(1);
+    }
+    const { startMailCraftServer } = require('./server');
+    startMailCraftServer(port);
   });
 
 program

@@ -489,6 +489,353 @@ await mc.render('account-warning', {
 
 ---
 
+## Sending emails from Node.js
+
+MailCraft renders HTML. Pair it with any mailer to send it.
+
+### Nodemailer (any SMTP server)
+
+```bash
+npm install nodemailer
+```
+
+```typescript
+import nodemailer from 'nodemailer';
+import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
+
+const mc = new MailCraft();
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',   // or your SMTP host
+  port: 587,
+  auth: { user: 'you@gmail.com', pass: 'your-app-password' },
+});
+
+const { html, text } = await mc.render('otp', {
+  firstName: 'Ankur', otpCode: '847291', expiryMinutes: 10,
+  requestedAt: new Date().toUTCString(),
+});
+
+await transporter.sendMail({
+  from: '"My App" <no-reply@myapp.com>',
+  to: 'user@example.com',
+  subject: 'Your one-time password',
+  html,
+  text,
+});
+```
+
+### Resend (modern, free tier)
+
+```bash
+npm install resend
+```
+
+```typescript
+import { Resend } from 'resend';
+import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
+
+const resend = new Resend('re_your_api_key');
+const mc = new MailCraft();
+
+const { html, text } = await mc.render('welcome', {
+  firstName: 'Ankur', lastName: 'Bhatnagar',
+  workEmail: 'ankur@acme.com', companyName: 'Acme Corp',
+  role: 'Senior Engineer', startDate: 'September 15, 2026',
+});
+
+await resend.emails.send({
+  from: 'hr@acme.com',
+  to: 'ankur@example.com',
+  subject: 'Welcome to Acme Corp!',
+  html,
+  text,
+});
+```
+
+### SendGrid
+
+```bash
+npm install @sendgrid/mail
+```
+
+```typescript
+import sgMail from '@sendgrid/mail';
+import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
+
+sgMail.setApiKey('SG.your_api_key');
+const mc = new MailCraft();
+
+const { html, text } = await mc.render('password-reset', {
+  firstName: 'Ankur', resetLink: 'https://app.com/reset?token=abc',
+  expiryHours: 24,
+});
+
+await sgMail.send({
+  from: 'no-reply@myapp.com',
+  to: 'user@example.com',
+  subject: 'Reset your password',
+  html,
+  text: text ?? '',
+});
+```
+
+### AWS SES
+
+```bash
+npm install @aws-sdk/client-ses
+```
+
+```typescript
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
+
+const ses = new SESClient({ region: 'ap-south-1' });
+const mc  = new MailCraft();
+
+const { html, text } = await mc.render('invoice', { /* your data */ });
+
+await ses.send(new SendEmailCommand({
+  Source: 'billing@myapp.com',
+  Destination: { ToAddresses: ['customer@example.com'] },
+  Message: {
+    Subject: { Data: 'Your invoice' },
+    Body: {
+      Html: { Data: html },
+      Text: { Data: text ?? '' },
+    },
+  },
+}));
+```
+
+---
+
+## Integrating with non-Node backends (.NET · Java · Python · Ruby · PHP)
+
+MailCraft is a Node.js package. For other language backends use one of two patterns:
+
+### Pattern A — HTTP microservice (recommended for production)
+
+Start a lightweight REST server that any backend can call over HTTP:
+
+```bash
+# install once
+npm install -g @bhatnagar-ankur/mailcraft-core
+
+# start the server (keep it running as a sidecar / service)
+mailcraft serve --port 3001
+```
+
+The server exposes three endpoints:
+
+| Method | Path | Description |
+|---|---|---|
+| `POST` | `/render` | Render a template — body: `{ templateId, data }` |
+| `GET` | `/templates` | List all templates and their schemas |
+| `GET` | `/templates/:id` | Schema for one template |
+| `GET` | `/health` | Health check |
+
+You can also **mount it inside your own Express app**:
+
+```typescript
+import express from 'express';
+import { createMailCraftRouter } from '@bhatnagar-ankur/mailcraft-core';
+
+const app = express();
+app.use('/email', createMailCraftRouter());  // POST /email/render, GET /email/templates
+app.listen(3000);
+```
+
+#### Request / response shape
+
+```jsonc
+// POST /render
+{
+  "templateId": "otp",
+  "data": {
+    "firstName": "Ankur",
+    "otpCode": "847291",
+    "expiryMinutes": 10,
+    "requestedAt": "Sept 14, 2026 10:00 AM UTC"
+  }
+}
+
+// Response 200
+{ "html": "<!doctype html>...", "text": "Your OTP is 847291..." }
+
+// Response 404 — unknown templateId
+{ "error": "Template \"xyz\" not found." }
+
+// Response 422 — missing required field
+{ "error": "Template \"otp\" data validation failed:\n  • otpCode: Required" }
+```
+
+#### C# (.NET)
+
+```csharp
+using System.Net.Http.Json;
+
+var client = new HttpClient { BaseAddress = new Uri("http://localhost:3001") };
+
+var response = await client.PostAsJsonAsync("/render", new {
+    templateId = "otp",
+    data = new {
+        firstName     = "Ankur",
+        otpCode       = "847291",
+        expiryMinutes = 10,
+        requestedAt   = "Sept 14, 2026 10:00 AM UTC"
+    }
+});
+
+response.EnsureSuccessStatusCode();
+var result = await response.Content.ReadFromJsonAsync<RenderResult>();
+
+// Send result.Html with any .NET mailer (MailKit, SendGrid SDK, etc.)
+record RenderResult(string Html, string? Text);
+```
+
+#### Java
+
+```java
+import java.net.http.*;
+import java.net.URI;
+
+var body = """
+    {
+      "templateId": "otp",
+      "data": {
+        "firstName": "Ankur",
+        "otpCode": "847291",
+        "expiryMinutes": 10,
+        "requestedAt": "Sept 14, 2026 10:00 AM UTC"
+      }
+    }
+    """;
+
+var request = HttpRequest.newBuilder()
+    .uri(URI.create("http://localhost:3001/render"))
+    .header("Content-Type", "application/json")
+    .POST(HttpRequest.BodyPublishers.ofString(body))
+    .build();
+
+var response = HttpClient.newHttpClient()
+    .send(request, HttpResponse.BodyHandlers.ofString());
+
+// parse response.body() as JSON to get html and text fields
+```
+
+#### Python
+
+```python
+import requests
+
+resp = requests.post("http://localhost:3001/render", json={
+    "templateId": "otp",
+    "data": {
+        "firstName":     "Ankur",
+        "otpCode":       "847291",
+        "expiryMinutes": 10,
+        "requestedAt":   "Sept 14, 2026 10:00 AM UTC",
+    },
+})
+resp.raise_for_status()
+result = resp.json()
+
+html = result["html"]   # pass to Django/Flask email, smtplib, etc.
+text = result["text"]
+```
+
+#### Ruby
+
+```ruby
+require 'net/http'
+require 'json'
+
+uri  = URI('http://localhost:3001/render')
+body = {
+  templateId: 'otp',
+  data: {
+    firstName:     'Ankur',
+    otpCode:       '847291',
+    expiryMinutes: 10,
+    requestedAt:   'Sept 14, 2026 10:00 AM UTC',
+  }
+}.to_json
+
+res = Net::HTTP.post(uri, body, 'Content-Type' => 'application/json')
+result = JSON.parse(res.body)
+
+html = result['html']   # pass to ActionMailer or Mail gem
+text = result['text']
+```
+
+#### PHP
+
+```php
+$payload = json_encode([
+    'templateId' => 'otp',
+    'data'       => [
+        'firstName'     => 'Ankur',
+        'otpCode'       => '847291',
+        'expiryMinutes' => 10,
+        'requestedAt'   => 'Sept 14, 2026 10:00 AM UTC',
+    ],
+]);
+
+$ch = curl_init('http://localhost:3001/render');
+curl_setopt_array($ch, [
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => $payload,
+    CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+    CURLOPT_RETURNTRANSFER => true,
+]);
+
+$result = json_decode(curl_exec($ch), true);
+curl_close($ch);
+
+$html = $result['html'];  // pass to PHPMailer, SwiftMailer, etc.
+$text = $result['text'];
+```
+
+---
+
+### Pattern B — CLI subprocess
+
+Any backend can shell out to the `mailcraft render` CLI. Write template data to a JSON file, run the CLI, read the output file.
+
+```bash
+# Render to a file
+mailcraft render --template otp --data data.json --output email.html
+
+# Or pipe stdout
+mailcraft render --template otp --data data.json > email.html
+```
+
+#### Python subprocess example
+
+```python
+import subprocess, json, tempfile, os
+
+data = {
+    "firstName": "Ankur", "otpCode": "847291",
+    "expiryMinutes": 10,  "requestedAt": "Sept 14, 2026 10:00 AM"
+}
+
+with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f:
+    json.dump(data, f)
+    data_file = f.name
+
+result = subprocess.run(
+    ['mailcraft', 'render', '--template', 'otp', '--data', data_file],
+    capture_output=True, text=True, check=True
+)
+html = result.stdout
+os.unlink(data_file)
+```
+
+> **Pattern A is preferred** for web applications — it avoids process-spawn overhead on every request. Use Pattern B for batch jobs, scripts, or one-off rendering pipelines.
+
+---
+
 ## Email client compatibility
 
 | Feature | Gmail | Apple Mail | Outlook 2016/2019 | Outlook on the web |

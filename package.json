@@ -1,7 +1,7 @@
 {
   "name": "mailcraft-monorepo",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "MailCraft monorepo — open-source dynamic email template builder",
   "scripts": {
     "build": "turbo run build",
