@@ -2,6 +2,7 @@
 import { Command } from 'commander';
 import fs from 'fs';
 import path from 'path';
+import { exec } from 'child_process';
 import { MailCraft } from './index';
 
 const program = new Command();
@@ -95,6 +96,37 @@ program
       console.error(`Error: ${(err as Error).message}`);
       process.exit(1);
     }
+  });
+
+program
+  .command('preview [templateId]')
+  .description('Open a template preview in your browser (uses built-in sample data)')
+  .action((templateId) => {
+    const previewDir = path.join(__dirname, 'previews');
+    const indexFile = path.join(previewDir, 'index.html');
+
+    if (!fs.existsSync(indexFile)) {
+      console.error('Preview files not found. They are generated during the package build.');
+      process.exit(1);
+    }
+
+    // Append #templateId as fragment so the gallery auto-selects that tab
+    const fragment = templateId ? `#${templateId}` : '';
+    const fileUrl = `file://${indexFile.replace(/\\/g, '/')}${fragment}`;
+
+    const cmd =
+      process.platform === 'win32' ? `start "" "${fileUrl}"` :
+      process.platform === 'darwin' ? `open "${fileUrl}"` :
+      `xdg-open "${fileUrl}"`;
+
+    exec(cmd, (err) => {
+      if (err) {
+        console.log(`Could not open browser automatically.`);
+        console.log(`Open this file manually:\n  ${indexFile}`);
+      } else {
+        console.log(`Opened preview${templateId ? ` for "${templateId}"` : ' gallery'} in your browser.`);
+      }
+    });
   });
 
 program.parse();

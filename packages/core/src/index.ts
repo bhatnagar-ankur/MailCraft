@@ -7,6 +7,21 @@ import type { RenderOptions, RenderResult } from '@bhatnagar-ankur/mailcraft-typ
 
 export type { TemplateData, TemplateEntry, TemplateId, RenderOptions, RenderResult, ValidationResult };
 export { listTemplates, getTemplate, validateTemplateData };
+export type {
+  WelcomeData,
+  OtpData,
+  PasswordResetData,
+  EmailVerificationData,
+  InvoiceItem,
+  InvoiceData,
+  OrderItem,
+  OrderConfirmationData,
+  EventInvitationData,
+  SubscriptionData,
+  SystemAlertData,
+  AccountWarningData,
+  TemplateDataMap,
+} from './template-data';
 
 export class MailCraft {
   /**

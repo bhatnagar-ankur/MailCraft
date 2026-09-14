@@ -21,15 +21,18 @@ npm install @bhatnagar-ankur/mailcraft-core
 
 ```typescript
 import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
+import type { OtpData } from '@bhatnagar-ankur/mailcraft-core';
 
 const mc = new MailCraft();
 
-const { html, text } = await mc.render('otp', {
+const data: OtpData = {
   firstName:     'Ankur',
   otpCode:       '847291',
   expiryMinutes: 10,
   requestedAt:   'Sept 14, 2026, 10:00 AM UTC',
-});
+};
+
+const { html, text } = await mc.render('otp', data);
 
 // html → production-ready inlined HTML, send with any mailer
 // text → plain-text fallback
@@ -37,26 +40,80 @@ const { html, text } = await mc.render('otp', {
 
 ---
 
-## Previewing a template
+## Previewing templates
 
-Save the rendered HTML to a file and open it in your browser:
+**CLI — open the built-in preview gallery in your browser:**
+
+```bash
+# Open the gallery (all 10 templates, tabbed viewer)
+npx @bhatnagar-ankur/mailcraft-core preview
+
+# Jump straight to a specific template
+npx @bhatnagar-ankur/mailcraft-core preview otp
+npx @bhatnagar-ankur/mailcraft-core preview invoice
+```
+
+**Code — render to a local file and open it:**
 
 ```typescript
 import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
 import { writeFileSync } from 'fs';
 
-const mc = new MailCraft();
-const { html } = await mc.render('welcome', { /* variables */ });
+const mc   = new MailCraft();
+const { html } = await mc.render('welcome', { /* your data */ });
 
 writeFileSync('preview.html', html);
-// then open preview.html in your browser
+// open preview.html in your browser
 ```
 
-Or use the CLI:
+**Render CLI:**
 
 ```bash
-# render directly to a file and open it
 npx @bhatnagar-ankur/mailcraft-core render --template otp --data data.json --output preview.html
+```
+
+---
+
+## Typed data interfaces
+
+Import a typed interface for each template to get full autocomplete and compile-time checking:
+
+```typescript
+import type {
+  WelcomeData,
+  OtpData,
+  PasswordResetData,
+  EmailVerificationData,
+  InvoiceData,
+  OrderConfirmationData,
+  EventInvitationData,
+  SubscriptionData,
+  SystemAlertData,
+  AccountWarningData,
+} from '@bhatnagar-ankur/mailcraft-core';
+```
+
+Use them when constructing your data objects:
+
+```typescript
+import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
+import type { InvoiceData } from '@bhatnagar-ankur/mailcraft-core';
+
+const mc = new MailCraft();
+
+const data: InvoiceData = {
+  customerName:  'Acme Corp',
+  invoiceNumber: 'INV-2026-042',
+  invoiceDate:   'September 14, 2026',
+  currency:      'USD',
+  items: [
+    { description: 'Pro License', quantity: '1', unitPrice: '$99.00', total: '$99.00' },
+  ],
+  subtotal: '$99.00',
+  total:    '$99.00',
+};
+
+const { html } = await mc.render('invoice', data);
 ```
 
 ---
