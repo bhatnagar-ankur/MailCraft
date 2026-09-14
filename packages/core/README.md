@@ -163,27 +163,64 @@ mc.list().forEach(t => console.log(t.id, '—', t.name));
 
 ### `welcome` — HR Welcome / Onboarding Email
 
-New employee first-day welcome or client onboarding email.
+New employee joining letter with full details in a structured 4-section table: profile, role, employment details, and first day info.
 
 | Variable | Type | Required | Description |
 |---|---|:---:|---|
-| `firstName` | string | ✅ | Recipient's first name |
-| `companyName` | string | ✅ | Company or organisation name |
-| `role` | string | ✅ | Job title or role |
-| `startDate` | string | ✅ | First day date, e.g. `'September 15, 2026'` |
-| `managerName` | string | — | Manager's full name |
-| `portalLink` | url | — | Link to employee/client portal |
-| `logoUrl` | url | — | Company logo image URL |
+| `firstName` | string | ✅ | Employee's first name |
+| `lastName` | string | ✅ | Employee's last name |
+| `workEmail` | string | ✅ | Corporate work email address |
+| `companyName` | string | ✅ | Company name |
+| `role` | string | ✅ | Job title |
+| `startDate` | string | ✅ | First day date |
+| `employeeId` | string | — | Employee ID / staff number |
+| `personalEmail` | string | — | Personal email address |
+| `department` | string | — | Department name |
+| `team` | string | — | Team within the department |
+| `managerName` | string | — | Reporting manager's name |
+| `workLocation` | string | — | Office location or `'Remote'` |
+| `previousExperience` | string | — | Prior experience summary |
+| `employmentType` | string | — | `'Full-time'`, `'Contract'`, etc. |
+| `workingHours` | string | — | Working hours, e.g. `'9:30 AM – 6:30 PM IST'` |
+| `probationPeriod` | string | — | Probation period, e.g. `'3 months'` |
+| `ctc` | string | — | Annual CTC / salary |
+| `reportingLocation` | string | — | Where to report on day 1 |
+| `reportingTime` | string | — | Time to report on day 1 |
+| `hrEmail` | string | — | HR contact email |
+| `itSetupLink` | url | — | IT setup guide link |
+| `onboardingNote` | string | — | Custom highlighted note from HR |
+| `portalLink` | url | — | Onboarding portal link |
+| `logoUrl` | url | — | Company logo URL |
 
 ```typescript
-await mc.render('welcome', {
-  firstName:   'Priya',
-  companyName: 'Acme Corp',
-  role:        'Senior Engineer',
-  startDate:   'September 15, 2026',
-  managerName: 'Rahul Sharma',
-  portalLink:  'https://portal.acme.com',
-});
+import type { WelcomeData } from '@bhatnagar-ankur/mailcraft-core';
+
+const data: WelcomeData = {
+  firstName:          'Ankur',
+  lastName:           'Bhatnagar',
+  workEmail:          'ankur.bhatnagar@acmecorp.com',
+  companyName:        'Acme Corp',
+  role:               'Senior Software Engineer',
+  startDate:          'September 15, 2026',
+  employeeId:         'EMP-2026-0142',
+  department:         'Engineering',
+  team:               'Platform & Infrastructure',
+  managerName:        'Jane Smith',
+  workLocation:       'Bangalore HQ (Hybrid)',
+  previousExperience: '6 years — Backend Engineering at Flipkart & Razorpay',
+  employmentType:     'Full-time, Permanent',
+  workingHours:       '9:30 AM – 6:30 PM IST',
+  probationPeriod:    '3 months',
+  ctc:                '₹28,00,000 per annum',
+  reportingLocation:  'Floor 5, Acme HQ — 42 MG Road, Bengaluru',
+  reportingTime:      '9:30 AM',
+  hrEmail:            'hr@acmecorp.com',
+  itSetupLink:        'https://it.acmecorp.com/onboarding',
+  onboardingNote:     'Please carry a government-issued photo ID on your first day.',
+  portalLink:         'https://portal.acmecorp.com/onboarding',
+};
+
+await mc.render('welcome', data);
 ```
 
 ---

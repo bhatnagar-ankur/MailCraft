@@ -3,10 +3,27 @@
 
 export interface WelcomeData {
   firstName: string;
+  lastName: string;
+  workEmail: string;
   companyName: string;
   role: string;
   startDate: string;
+  employeeId?: string;
+  personalEmail?: string;
+  department?: string;
+  team?: string;
   managerName?: string;
+  workLocation?: string;
+  previousExperience?: string;
+  employmentType?: string;
+  workingHours?: string;
+  probationPeriod?: string;
+  ctc?: string;
+  reportingLocation?: string;
+  reportingTime?: string;
+  hrEmail?: string;
+  itSetupLink?: string;
+  onboardingNote?: string;
   portalLink?: string;
   logoUrl?: string;
 }
