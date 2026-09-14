@@ -17,9 +17,7 @@ export interface WelcomeData {
   previousExperience?: string;
   employmentType?: string;
   workingHours?: string;
-  probationPeriod?: string;
-  ctc?: string;
-  reportingLocation?: string;
+reportingLocation?: string;
   reportingTime?: string;
   hrEmail?: string;
   itSetupLink?: string;

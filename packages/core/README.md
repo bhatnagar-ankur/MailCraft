@@ -9,6 +9,31 @@ MailCraft wraps **MJML** (bulletproof table-based HTML) with **Handlebars** (saf
 
 ---
 
+## Contents
+
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Previewing templates](#previewing-templates)
+- [Testing templates locally](#testing-templates-locally)
+- [Typed data interfaces](#typed-data-interfaces)
+- [API](#api)
+- [Templates](#templates)
+  - [welcome](#welcome--hr-welcome--onboarding-email)
+  - [otp](#otp--otp--security-code)
+  - [password-reset](#password-reset--password-reset)
+  - [email-verification](#email-verification--email-verification--account-activation)
+  - [invoice](#invoice--invoice--payment-receipt)
+  - [order-confirmation](#order-confirmation--order-confirmation)
+  - [event-invitation](#event-invitation--event-invitation)
+  - [subscription](#subscription--subscription-confirmation)
+  - [system-alert](#system-alert--system-alert)
+  - [account-warning](#account-warning--account-warning)
+- [Sending emails from Node.js](#sending-emails-from-nodejs)
+- [Integrating with non-Node backends](#integrating-with-non-node-backends-net--java--python--ruby--php)
+- [Email client compatibility](#email-client-compatibility)
+
+---
+
 ## Installation
 
 ```bash
@@ -70,6 +95,95 @@ writeFileSync('preview.html', html);
 
 ```bash
 npx @bhatnagar-ankur/mailcraft-core render --template otp --data data.json --output preview.html
+```
+
+---
+
+## Testing templates locally
+
+Three ways to verify a template renders correctly before integrating it.
+
+### 1 — CLI render to file (quickest)
+
+Write a JSON file with your template data, render to HTML, open in a browser:
+
+```bash
+# 1. create your data file
+echo '{"firstName":"Ankur","otpCode":"847291","expiryMinutes":10,"requestedAt":"Sept 14 2026"}' > data.json
+
+# 2. render to an HTML file
+npx @bhatnagar-ankur/mailcraft-core render --template otp --data data.json --output preview.html
+
+# 3. open in your default browser
+#    macOS
+open preview.html
+#    Windows
+start preview.html
+#    Linux
+xdg-open preview.html
+```
+
+### 2 — Built-in preview gallery
+
+Renders all 10 templates with realistic sample data in a dark-themed tabbed viewer:
+
+```bash
+# open the full gallery
+npx @bhatnagar-ankur/mailcraft-core preview
+
+# jump straight to one template
+npx @bhatnagar-ankur/mailcraft-core preview welcome
+npx @bhatnagar-ankur/mailcraft-core preview invoice
+```
+
+### 3 — Node.js script
+
+Write a small script and run it with `ts-node` / `tsx`:
+
+```typescript
+// test-render.ts
+import { MailCraft } from '@bhatnagar-ankur/mailcraft-core';
+import { writeFileSync } from 'fs';
+
+const mc = new MailCraft();
+
+const { html } = await mc.render('otp', {
+  firstName:     'Ankur',
+  otpCode:       '847291',
+  expiryMinutes: 10,
+  requestedAt:   'Sept 14, 2026, 10:00 AM UTC',
+});
+
+writeFileSync('preview.html', html);
+console.log('Written to preview.html');
+```
+
+```bash
+npx tsx test-render.ts
+open preview.html   # macOS  |  start preview.html (Windows)
+```
+
+### Validate data without rendering
+
+Use `mc.validate()` to check required fields and types before rendering:
+
+```typescript
+const mc = new MailCraft();
+
+const result = mc.validate('otp', { firstName: 'Ankur' }); // missing required fields
+console.log(result.valid);  // false
+console.log(result.errors); // [{ field: 'otpCode', message: 'Required' }, ...]
+```
+
+### Inspect a template's schema
+
+```bash
+npx @bhatnagar-ankur/mailcraft-core schema otp
+```
+
+```bash
+# list all template IDs
+npx @bhatnagar-ankur/mailcraft-core list
 ```
 
 ---
@@ -182,8 +296,6 @@ New employee joining letter with full details in a structured 4-section table: p
 | `previousExperience` | string | — | Prior experience summary |
 | `employmentType` | string | — | `'Full-time'`, `'Contract'`, etc. |
 | `workingHours` | string | — | Working hours, e.g. `'9:30 AM – 6:30 PM IST'` |
-| `probationPeriod` | string | — | Probation period, e.g. `'3 months'` |
-| `ctc` | string | — | Annual CTC / salary |
 | `reportingLocation` | string | — | Where to report on day 1 |
 | `reportingTime` | string | — | Time to report on day 1 |
 | `hrEmail` | string | — | HR contact email |
@@ -210,8 +322,6 @@ const data: WelcomeData = {
   previousExperience: '6 years — Backend Engineering at Flipkart & Razorpay',
   employmentType:     'Full-time, Permanent',
   workingHours:       '9:30 AM – 6:30 PM IST',
-  probationPeriod:    '3 months',
-  ctc:                '₹28,00,000 per annum',
   reportingLocation:  'Floor 5, Acme HQ — 42 MG Road, Bengaluru',
   reportingTime:      '9:30 AM',
   hrEmail:            'hr@acmecorp.com',

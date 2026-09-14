@@ -159,20 +159,6 @@
             <td style="padding: 11px 16px; font-size: 14px; font-weight: 500; color: #111827;">{{workingHours}}</td>
           </tr>
           {{/if}}
-          <!-- Probation Period -->
-          {{#if probationPeriod}}
-          <tr style="border-bottom: 1px solid #f1f5f9;">
-            <td style="padding: 11px 16px; font-size: 13px; color: #6b7280;">Probation Period</td>
-            <td style="padding: 11px 16px; font-size: 14px; font-weight: 500; color: #111827;">{{probationPeriod}}</td>
-          </tr>
-          {{/if}}
-          <!-- Annual Salary / CTC -->
-          {{#if ctc}}
-          <tr style="border-bottom: 1px solid #f1f5f9;">
-            <td style="padding: 11px 16px; font-size: 13px; color: #6b7280;">Annual CTC</td>
-            <td style="padding: 11px 16px; font-size: 14px; font-weight: 500; color: #111827;">{{ctc}}</td>
-          </tr>
-          {{/if}}
         </mj-table>
       </mj-column>
     </mj-section>
